@@ -1,43 +1,58 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Trimaker from '../../assets/images/nebula.png'
-import { Box, Typography } from '@mui/material';
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
+import React from 'react';
+import Apolo from '../../assets/images/apolo.png'
+import Magna from '../../assets/images/magna500.png'
+import Nebula from '../../assets/images/nebula.png'
 export const About = () => {
+
+  const printers = [
+    {
+      name: 'Hellbot Apolo Pro',
+      description: 'Esta es nuestra impresora de resina, tiene un volumen maximo de impresion',
+      imageUrl: Apolo,
+    },
+    {
+      name: 'Hellbot magna II 500',
+      description: 'Gracias a esta impresora podemos ofrecerles impresiones de hasta 50 centimetros cubicos',
+      imageUrl: Magna,
+    },
+    {
+      name: 'Trimaker nebula cloud',
+      description: 'Esta maquian es la que usamos en ',
+      imageUrl: Nebula,
+    },
+
+  ];
+
+  const services = [
+    'Prototipado',
+    'Diseño 2D',
+    'Diseño 3D',
+    'Impresiones FDM',
+    'Impresiones DLP',
+  ];
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Typography variant='h2' sx={{color: '#fff'}}>Nuestras Maquinas</Typography>
-      <Grid container spacing={1}>
-        <Grid item xs={6}>
-          <Item><img src={Trimaker} alt='trimaker'/></Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item><img src={Trimaker} alt='trimaker'/></Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item><img src={Trimaker} alt='trimaker'/></Item>
-        </Grid>
-        <Grid item xs={8}>
-          <Item><img src={Trimaker} alt='trimaker'/></Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item><img src={Trimaker} alt='trimaker'/></Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item><img src={Trimaker} alt='trimaker'/></Item>
-        </Grid>
-      </Grid>
-    </Box>
+    <section className="about-us">
+      <div className="printers">
+        <h2>Nuestras Impresoras 3D</h2>
+        <ul>
+          {printers.map((printer, index) => (
+            <li key={index}>
+              <strong>{printer.name}</strong>: {printer.description}
+              <br />
+              <img src={printer.imageUrl} width={500} height={400} alt={printer.name} />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="services">
+        <h2>Nuestros Servicios</h2>
+        <ul>
+          {services.map((service, index) => (
+            <li key={index}>{service}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
-}
+};
